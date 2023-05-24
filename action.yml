@@ -1,0 +1,23 @@
+# action.yml
+name: 'Release Modpack'
+description: 'Releases a new version to Modrinth modpacks'
+inputs:
+  modpack-id:  # id of input
+    description: 'The ID of the modpack'
+    required: true
+    default: ''
+  discord-token:  # id of input
+    description: 'The discord token to be used for authentication'
+    required: true
+    default: ''
+outputs:
+  success: # id of output
+    description: 'If the update succeeded'
+  url:
+    description: 'The URL of the release version'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.modpack-id }}
+    - ${{ inputs.discord-token }}
